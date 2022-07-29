@@ -1,16 +1,44 @@
 const fs= require("fs") ;
 
-const read= fs.readFileSync("./text.txt" , {encoding:"utf-8"});
-// console.log(read);
-const append= fs.appendFileSync("./text.txt" , "Hello from Sukanta") ;
 
-const create= fs.writeFileSync("./text2.txt", "This is a new File") ;
+//console.log(__dirname);
 
-// const del= fs.unlinkSync("./text2.txt") ;
+let inp= process.argv[2] ;
+let inp1= process.argv[3] ;
+let inp2= process.argv[4] ;
 
-const rename= fs.renameSync("./text2.txt","./text3.txt") ;
-
-const list = fs.readdirSync("../Day1").forEach(file=> console.log(file))
+switch(inp){
+    case "read":{
+        const read= fs.readFileSync(`./${inp1}` , {encoding:"utf-8"});
+        console.log(read);
+        break ;
+    };
+    case "append":{
+        const append= fs.appendFileSync(`./${inp2}` , inp1) ;
+        console.log("Append Success!!! please see related folder");
+        break ;
+    }
+    case "delete":{
+        const del= fs.unlinkSync(`./${inp1}`) ;
+        console.log("Delete Success!!!") ;
+        break ;
+    };
+    case "create":{
+        const create= fs.writeFileSync(`./${inp1}`, "This is a new File") ;
+        console.log("File created Successfully, please see the folder structure");
+        break ;
+    };
+    case "rename":{
+        const rename= fs.renameSync(`./${inp1}`,`./${inp2}`) ;
+        console.log("rename Sucess!!!"); 
+        break ;
+    };
+    case "list.":{
+        const directory= __dirname
+        const list = fs.readdirSync(directory).forEach(file=> console.log(file)) ;
+        break ;
+    }
+}
 
 
 
